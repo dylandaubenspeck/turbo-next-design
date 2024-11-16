@@ -4,6 +4,8 @@ import { ThemeProvider } from '@repo/ui/components/theme-provider'
 import { cn } from '@repo/ui/lib/utils'
 import type { Metadata, Viewport } from 'next'
 import localFont from 'next/font/local'
+import { Inter } from 'next/font/google'
+import { Bricolage_Grotesque } from 'next/font/google'
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -13,6 +15,9 @@ const geistMono = localFont({
   src: './fonts/GeistMonoVF.woff',
   variable: '--font-geist-mono'
 })
+
+const inter = Inter({ subsets: ['latin'] })
+const bricolage = Bricolage_Grotesque({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Next.js 15 with Turborepo and shadcn/ui',
@@ -61,6 +66,12 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body
         className={cn(
           geistSans.variable,
