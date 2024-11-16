@@ -1,0 +1,25 @@
+@layer components {
+  .nav-container {
+    @apply fixed top-0 left-0 right-0 h-16 bg-app-dark-nav border-b border-app-dark-border z-20;
+  }
+
+  .nav-button {
+    @apply p-2 hover:bg-app-dark-hover rounded-md transition-colors;
+  }
+
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .sidebar-button {
+    @apply box-border flex justify-center items-center w-[40px] h-[40px] bg-app-dark-nav border border-app-dark-border rounded-[6px] hover:bg-app-dark-hover transition-colors;
+  }
+
+  .sidebar-icon {
+    @apply w-6 h-6 flex items-center justify-center text-app-text-primary;
+  }
+
+  .sidebar-text {
+    @apply absolute left-12 whitespace-nowrap text-app-text-primary;
+  }
+}

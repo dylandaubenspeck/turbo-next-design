@@ -1,0 +1,3 @@
+# API Endpoints Structure
+
+## Authentication

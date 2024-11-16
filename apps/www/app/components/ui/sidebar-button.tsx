@@ -15,18 +15,19 @@ export function SidebarButton({ icon, text, href, isOpen, isActive }: SidebarBut
       <div
         role="button"
         className={cn(
-          "box-border flex justify-center items-center",
-          "w-[40px] h-[40px]",
-          "bg-[#0B0D0E] border border-[#474E54] rounded-[6px]",
-          "hover:bg-zinc-800 transition-colors",
-          isActive && "bg-zinc-800"
+          "box-border flex items-center transition-all duration-300",
+          "h-[40px] rounded-[6px] px-3",
+          "bg-card border border-border",
+          "hover:bg-secondary",
+          isOpen ? "w-[200px]" : "w-[40px] justify-center",
+          isActive && "bg-secondary"
         )}
       >
-        <span className="w-6 h-6 flex items-center justify-center">
+        <span className="w-6 h-6 flex items-center justify-center text-muted-foreground">
           {icon}
         </span>
         {isOpen && (
-          <span className="absolute left-12 whitespace-nowrap text-[#f2f2f2]">
+          <span className="ml-3 text-base font-['Bricolage_Grotesque'] text-foreground">
             {text}
           </span>
         )}
