@@ -14,9 +14,13 @@ import Image from 'next/image'
 import { Sidebar } from './components/sidebar-desktop'
 import { Header } from './components/header'
 import { useState } from 'react'
-import { cn } from '@repo/ui/lib/utils'
-import CharactersIcon from './icons/characters-icon'
-import AvatarIcon from './icons/avatar-icon'
+
+// Add this new component at the top of the file, after imports
+const HomeIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="1.6em" height="1.6em" viewBox="0 0 24 24">
+    <path fill="white" d="M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8z" />
+  </svg>
+)
 
 export default function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -26,66 +30,167 @@ export default function Home() {
   }
 
   return (
-    <div className="bg-background min-h-screen">
+    <>
       <Header toggleSidebar={toggleSidebar} />
       <Sidebar isOpen={isSidebarOpen} />
-      <main className={cn(
-        "flex min-h-screen flex-col p-4 md:p-6 pt-24 transition-all duration-300",
-        isSidebarOpen ? "ml-64" : "ml-[73px]"
-      )}>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {/* Generate Image Card */}
-          <Link href="/generate">
-            <Card className="bg-app-dark-lighter border-app-dark-border hover:border-app-accent-blue transition-colors">
-              <CardHeader>
-                <div className="flex items-center space-x-2">
-                  <CharactersIcon />
-                  <CardTitle className="text-app-text-primary text-lg font-medium">
-                    Generate Image
-                  </CardTitle>
-                </div>
-                <CardDescription className="text-app-text-secondary">
-                  Generate character images using AI
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </Link>
+      <div className="flex min-h-screen flex-col items-center justify-between p-4 md:p-20 pt-24">
+        <motion.main
+          className="flex w-full max-w-4xl flex-col items-center gap-12 rounded-lg"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.div
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="bg-black rounded-full p-4"
+          >
+            <HomeIcon />
+          </motion.div>
+          <motion.h1
+            className="text-center text-4xl font-bold tracking-tight"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            Welcome to{' '}
+            <span className="bg-gradient-to-r from-[#0099F7] to-[#F11712] bg-clip-text text-transparent">
+              Next.js 15
+            </span>{' '}
+            with Turborepo and shadcn/ui
+          </motion.h1>
+          <motion.p
+            className="text-muted-foreground max-w-[600px] text-center text-lg"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+          >
+            A modern web application using Next.js 15, Turborepo, and shadcn/ui
+            components.
+          </motion.p>
+          <motion.div
+            className="bg-muted/50 rounded-lg border p-6 font-mono text-sm leading-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+          >
+            <p>
+              Get started by editing{' '}
+              <code className="bg-muted rounded p-1 font-semibold">
+                app/page.tsx
+              </code>
+            </p>
+          </motion.div>
 
-          {/* Create Character Card */}
-          <Link href="/create">
-            <Card className="bg-app-dark-lighter border-app-dark-border hover:border-app-accent-blue transition-colors">
-              <CardHeader>
-                <div className="flex items-center space-x-2">
-                  <AvatarIcon />
-                  <CardTitle className="text-app-text-primary text-lg font-medium">
-                    Create Character
-                  </CardTitle>
-                </div>
-                <CardDescription className="text-app-text-secondary">
-                  Design your character's personality and attributes
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </Link>
+          <motion.div
+            className="flex flex-wrap justify-center gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.5 }}
+          >
+            <Link
+              className="bg-primary text-primary-foreground hover:bg-primary/90 flex items-center gap-2 rounded-full px-6 py-3 transition"
+              href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/vercel.svg"
+                alt="Vercel logo"
+                width={25}
+                height={20}
+                className="mr-2 dark:invert"
+              />
+              Deploy now
+            </Link>
+            <Link
+              href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+              className="border-primary/10 text-primary hover:bg-primary/10 rounded-full border px-6 py-3 transition"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Read our docs
+            </Link>
+          </motion.div>
 
-          {/* Gallery Card */}
-          <Link href="/gallery">
-            <Card className="bg-app-dark-lighter border-app-dark-border hover:border-app-accent-blue transition-colors">
+          <motion.div
+            className="grid w-full grid-cols-1 gap-6 md:grid-cols-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 0.5 }}
+          >
+            <Card>
               <CardHeader>
-                <div className="flex items-center space-x-2">
-                  <FileText className="w-6 h-6" />
-                  <CardTitle className="text-app-text-primary text-lg font-medium">
-                    Character Gallery
-                  </CardTitle>
-                </div>
-                <CardDescription className="text-app-text-secondary">
-                  Browse and get inspired by other characters
-                </CardDescription>
+                <CardTitle>Turborepo</CardTitle>
               </CardHeader>
+              <CardContent>
+                <CardDescription>
+                  High-performance build system for JavaScript and TypeScript
+                  codebases.
+                </CardDescription>
+              </CardContent>
             </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Next.js 15</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>
+                  The latest version of the React framework with improved
+                  performance and developer experience.
+                </CardDescription>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>shadcn/ui</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>
+                  Beautifully designed components that you can copy and paste into
+                  your apps.
+                </CardDescription>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </motion.main>
+        <motion.footer
+          className="mt-16 flex flex-wrap justify-center gap-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.5 }}
+        >
+          <Link
+            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-foreground flex items-center gap-2 transition-colors hover:underline"
+          >
+            <FileText size={16} />
+            <span>Learn</span>
           </Link>
-        </div>
-      </main>
-    </div>
+          <Link
+            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-foreground flex items-center gap-2 transition-colors hover:underline"
+          >
+            <Layout size={16} />
+            <span>Templates</span>
+          </Link>
+          <Link
+            href="https://nextjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-foreground flex items-center gap-2 transition-colors hover:underline"
+          >
+            <Globe size={16} />
+            <span>Go to nextjs.org</span>
+            <ArrowRight size={16} />
+          </Link>
+        </motion.footer>
+      </div>
+    </>
   )
 }

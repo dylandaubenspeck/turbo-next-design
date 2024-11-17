@@ -45,7 +45,7 @@ const navigationLinks = [
 const bottomLinks = [
   {
     text: "Settings",
-    href: "/design-system",
+    href: "/settings",
     icon: <SettingsIcon />,
   },
   {
@@ -61,8 +61,8 @@ export function Sidebar({ isOpen }: SidebarProps) {
       className={cn(
         "fixed top-16 left-0 z-50",
         "h-[calc(100vh-64px)] transition-all duration-300",
-        "bg-card border-r border-solid border-border",
-        isOpen ? "w-[232px]" : "w-[73px]"
+        "bg-[#0A0A0A] border-r border-solid border-[#474E54]",
+        isOpen ? "w-64" : "w-[73px]"
       )}
     >
       <div className="flex flex-col h-full pt-4 px-4 pb-4">
@@ -79,7 +79,7 @@ export function Sidebar({ isOpen }: SidebarProps) {
               />
             ))}
             <div className="my-1">
-              <div className="w-[40px] h-[1px] bg-border" />
+              <div className="w-[40px] h-[1px] bg-[#474E54]" />
             </div>
             {bottomLinks.map((link) => (
               <SidebarButton
